@@ -98,6 +98,8 @@ a {
   margin-bottom: 4px;
   padding-left: 20px;
   padding-right: 25px;
+  height: 48px;
+  gap: 27px;
 }
 
 .field {
