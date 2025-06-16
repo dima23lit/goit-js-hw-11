@@ -14,7 +14,15 @@ function handleForm(event) {
     event.preventDefault()
 
     if (event.target.elements[0].value === "") {
-        alert('Please, fill out the form')
+        iziToast.show({
+            message: "Please, fill out thne form",
+            position: 'topRight',
+            backgroundColor: '#EF4040',
+            titleColor: '#fff',
+            messageColor: '#fff',
+            close: true,
+        }
+        )
         return
     }
     clearGallery()
@@ -23,7 +31,6 @@ function handleForm(event) {
     getImagesByQuery(event.target.elements[0].value)
         .then(response => {
             if (response.hits.length >= 1) {
-                console.log(response.hits)
                 createGallery(response.hits)
             }
             else {
@@ -39,11 +46,17 @@ function handleForm(event) {
             }
         })
         .catch(error =>
-        error
+            iziToast.show({
+                message: error.message,
+                position: 'topRight',
+                backgroundColor: '#EF4040',
+                titleColor: '#fff',
+                messageColor: '#fff',
+                close: true,
+            }
+            )
     )
         .finally(() => 
         hideLoader()
     )
-
-    form.reset()
 }
